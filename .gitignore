@@ -1,0 +1,7 @@
+node_modules/
+.env
+views/script_stoppreload.txt
+new.js
+dist/
+build/
+.DS_Store

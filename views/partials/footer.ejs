@@ -1,0 +1,44 @@
+
+<script>
+    window.addEventListener('load', async() => {
+        const preloader = document.getElementById('preloader');
+        const mainContent = document.getElementById('main-content');
+        const loadingSvg = document.getElementById('loading-svg');
+        //wait to see the preloader spin
+        await new Promise(r => setTimeout(r, 1000));
+
+        // Fade-out effect
+        loadingSvg.style.transform = 'scale(10)'; // increase size
+        loadingSvg.style.opacity = '0';//decreases opacity of svg
+
+        preloader.style.opacity = '0';
+        preloader.style.transition = 'opacity 2s ease';
+
+        setTimeout(() => {preloader.style.display = 'none';}, 2000);
+    
+    });
+    //preloader end
+
+    let lastScrollTop = 0;
+    const navbar = document.querySelector(".navbar");
+
+    window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScroll > 100 && currentScroll > lastScrollTop) {
+        if (Math.abs(currentScroll - lastScrollTop) < 10) return;
+        navbar.classList.add("navbar--hidden");
+    } else {
+        // scrolling up → show navbar
+        navbar.classList.remove("navbar--hidden");
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+    
+
+    
+
+</script>
+</body>
+</html>
+    

@@ -1,0 +1,29 @@
+<%- include('partials/headerAuth') %>
+
+<% if (alert) { %>
+<script>
+  alert("<%= alert %>");
+</script>
+<% } %>
+
+<div id="preloader">
+    <div class="rotate">
+        <img src="css/svgs/basketball.svg" id="loading-svg" alt="icon">
+    </div>
+</div>
+
+
+<div class="home-page">
+    <div class="home-all-content">
+        <div><!-- will put something here --></div>
+        <form class="form-details" action="/register" method="post">
+            <input class="input" type="email" id="email" name="email" placeholder="Email ID" required>
+            <input class="input" type="password" id="password" name="password" placeholder="Password" required>
+            <input class="input-button" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+
+
+<%- include('partials/footerAuth') %>

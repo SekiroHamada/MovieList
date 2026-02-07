@@ -1,0 +1,63 @@
+
+<script>
+    //for watched
+  const form = document.getElementById("choice_watched");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("/put_watched", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+
+      if (response.status==201) {
+        alert("Movie added to watched 🎉");
+      } else if(response.status==409){
+        alert("Already Added ⚠️");
+      }else{
+        alert("Something Went Wrong!");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  });
+  //for watch_later
+  const wat_lat = document.getElementById("choice_watch_later");
+
+  wat_lat.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(wat_lat);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("/watch_later_post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (response.status==201) {
+        alert("Movie added to Watch Later 🎉");
+      } else if(response.status==409){
+        alert("Already added ⚠️");
+      }else if(response.status==208){
+        alert("Already in Watched!");
+      }else{
+        alert("Something Went Wrong!");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  });
+
+
+</script>

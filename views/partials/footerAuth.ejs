@@ -1,0 +1,24 @@
+
+<script>
+    //for preloader
+    window.addEventListener('load', async() => {
+        const preloader = document.getElementById('preloader');
+        const mainContent = document.getElementById('main-content');
+        const loadingSvg = document.getElementById('loading-svg');
+        //wait to see the preloader spin
+        await new Promise(r => setTimeout(r, 1000));
+
+        // Fade-out effect
+        loadingSvg.style.transform = 'scale(10)'; // increase size
+        loadingSvg.style.opacity = '0';//decreases opacity of svg
+
+        preloader.style.opacity = '0';
+        preloader.style.transition = 'opacity 1s ease-in-out';
+
+        setTimeout(() => {preloader.style.display = 'none';}, 1000);
+    });
+    //preloader end
+</script>
+</body>
+</html>
+    
