@@ -12,7 +12,7 @@ import { Strategy } from "passport-local";
 const app=express();
 env.config();
 const PORT= process.env.PORT || 3000;
-const saltRounds=10;
+const saltRounds=process.env.SALT;
 
 
 
@@ -33,17 +33,20 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+//changes for render postgresql
+const { Client } = pg;
 
-const db = new pg.Client({
-  user: process.env.USER,
-  host: process.env.HOST,
-  database: process.env.DATABASE,
-  password: process.env.PASSWORD,
-  port: 5432,
+const db = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.NODE_ENV === "production"
+    ? { rejectUnauthorized: false }
+    : false,
 });
 
-db.connect();
-
+db.connect()
+  .then(() => console.log("PostgreSQL connected"))
+  .catch(err => console.error("DB connection error", err));
+//changes end
 
 
 app.get("/",async(req,res)=>{
