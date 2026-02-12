@@ -12,7 +12,7 @@ import { Strategy } from "passport-local";
 const app=express();
 env.config();
 const PORT= process.env.PORT || 3000;
-const saltRounds=process.env.SALT;
+const saltRounds=parseInt(process.env.SALT);
 
 
 
